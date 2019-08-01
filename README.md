@@ -48,7 +48,7 @@ $ docker-compose run web rake db:migrate
 $ rails generate rspec:install
 ```
 
-`rails_helper.rb` に `require 'capybara/rspec'` を追記
+`rails_helper.rb` に `require 'capybara/rspec'` を追記  
 `system/user_spec.rb` に最低限のテストを記載
 
 ## 7. コンテナを起動してテスト
