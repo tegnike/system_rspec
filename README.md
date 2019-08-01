@@ -1,24 +1,46 @@
-# README
+# System Spec 導入
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 1. 以下のファイルを作成
 
-Things you may want to cover:
+- Dockerfile
+- docker-compose.yml
+- Gemfile
+- Gemfile.lock
 
-* Ruby version
+## 2. Rails Projectを作成
 
-* System dependencies
+```
+$ docker-compose run web rails new . --force --database=postgresql --skip-test
+```
 
-* Configuration
+## 3. 必要なgemを追記して再build
 
-* Database creation
+```
+$ docker-compose build
+```
 
-* Database initialization
+## 4. dbを作成
 
-* How to run the test suite
+```
+$ docker-compose run web rake db:create
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+# 5. User modelを作成
 
-* Deployment instructions
+```
+$ docker-compose run web bin/rails g scaffold User name:string
+$ docker-compose run web rake db:migrate
+```
 
-* ...
+# 6. System Specを導入
+
+```
+$ rails generate rspec:install
+```
+
+# 7. コンテナを起動してテスト
+
+```
+$ docker-compose up
+$ docker-compose run web bin/rails spec
+```
