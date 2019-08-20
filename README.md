@@ -45,7 +45,7 @@ $ docker-compose run web rake db:migrate
 ## 6. System Specを導入
 
 ```
-$ rails generate rspec:install
+$ docker-compose run web rails generate rspec:install
 ```
 
 `rails_helper.rb` に `require 'capybara/rspec'` を追記  
